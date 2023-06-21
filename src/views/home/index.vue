@@ -12,16 +12,17 @@
         <div class="event-item" v-for="(item, index) in eventList" :key="index">
           <div class="event-item-header">
             <div class="event-item-header-left">
-              <span
-                class="title-img"
+              <div
+                class="title-img-div"
                 :style="{
                   background: colorList[Math.floor(Math.random() * index) % 3],
                 }"
-                >{{
-                  item.eventTitle ? item.eventTitle.substring(0, 1) : "X"
-                }}</span
               >
-              <span>{{ item.dateTime }}</span>
+                <div class="title-img">
+                  {{ item.eventTitle ? item.eventTitle.substring(0, 1) : "X" }}
+                </div>
+              </div>
+              <span class="date-time">{{ item.dateTime }}</span>
             </div>
 
             <div class="event-item-header-right">xxx</div>
@@ -44,7 +45,8 @@
       return {
         eventList: [
           {
-            eventTitle: "QQQQQQQQQQQQQQQQQQQQQ",
+            eventTitle:
+              "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ",
             dateTime: "今天下午 15:35:33",
           },
           { eventTitle: "YYYYYYYYYYYYYYYYYYYY", dateTime: "今天下午 15:35:33" },
@@ -59,6 +61,8 @@
           { eventTitle: "HHHHHHHHHHHHHHHHHHHH", dateTime: "今天下午 15:35:33" },
           { eventTitle: "HHHHHHHHHHHHHHHHHHHH", dateTime: "今天下午 15:35:33" },
           { eventTitle: "HHHHHHHHHHHHHHHHHHHH", dateTime: "今天下午 15:35:33" },
+          { eventTitle: "PHHHHHHHHHHHHHHHHHHH", dateTime: "今天下午 15:35:33" },
+          { eventTitle: "CHHHHHHHHHHHHHHHHHHH", dateTime: "今天下午 15:35:33" },
         ],
         colorList: ["#74b1fb", "#e5b1f1", "#fde288"],
       };
@@ -90,11 +94,11 @@
         flex-wrap: wrap;
         width: 100%;
         .event-item {
-          flex: 45%;
+          width: calc(50% - 36px);
           background: #ffffff;
           padding: 10px 8px;
           margin: 10px;
-          border-radius: 12px;
+          border-radius: 10px;
           cursor: pointer;
           // &:nth-child(2n + 1) {
           //   border-top-left-radius: 20px;
@@ -105,18 +109,57 @@
           .event-item-header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;  
+            margin-bottom: 10px;
             .event-item-header-left {
-              .title-img {
+              display: flex;
+              .title-img-div {
                 margin-right: 20px;
                 border-radius: 50%;
-                padding: 2px 6px;
-                color: #ffffff;
+                padding: 2px;
+                // color: #ffffff;
+                .title-img {
+                  box-sizing: border-box;
+                  width: 20px;
+                  height: 20px;
+                  text-align: center;
+                  line-height: 16px;
+                  color: #ffffff;
+                  padding: 2px;
+                }
+              }
+              .date-time {
+                color: #d4d4d6;
               }
             }
+          }
+
+          .event-item-msg {
+            color: #8e8e8e;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
         }
       }
     }
+  }
+
+  /*里面的代码可以根据自己需求去进行更改*/
+  /* 设置滚动条的样式 */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  /* 滚动槽 */
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+  /* 滚动条滑块 */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.5);
+  }
+  ::-webkit-scrollbar-thumb:window-inactive {
+    background: #b4b3b3;
   }
 </style>

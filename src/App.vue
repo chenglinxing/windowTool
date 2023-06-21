@@ -4,11 +4,29 @@
   </div>
 </template>
 
-<style lang = "scss">
-$color: red;
+<style lang="scss">
+  $color: red;
 
-.a {
-  color: $color;
-}
-
+  .a {
+    color: $color;
+  }
+  /*里面的代码可以根据自己需求去进行更改*/
+  /* 设置滚动条的样式 */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  /* 滚动槽 */
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+  /* 滚动条滑块 */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.5);
+  }
+  ::-webkit-scrollbar-thumb:window-inactive {
+    background: #b4b3b3;
+  }
 </style>
