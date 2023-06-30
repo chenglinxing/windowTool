@@ -1,5 +1,5 @@
 {
-  "name": "demo",
+  "name": "windowTools",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,9 +15,12 @@
   "dependencies": {
     "@icon-park/vue": "^1.4.2",
     "axios": "^0.21.1",
+    "codemirror": "^5.65.13",
     "core-js": "^3.6.5",
+    "dayjs": "^1.11.8",
     "element-ui": "^2.15.3",
     "vue": "^2.6.11",
+    "vue-codemirror": "^4.0.6",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0",
     "vuex-persistedstate": "^4.0.0",

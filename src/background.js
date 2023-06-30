@@ -1,6 +1,13 @@
 "use strict";
 
-import { app, protocol, BrowserWindow } from "electron";
+import {
+  app,
+  protocol,
+  BrowserWindow,
+  ipcMain,
+  dialog,
+  screen,
+} from "electron";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
 import installExtension, { VUEJS_DEVTOOLS } from "electron-devtools-installer";
 const isDevelopment = process.env.NODE_ENV !== "production";
@@ -78,3 +85,39 @@ if (isDevelopment) {
     });
   }
 }
+
+ipcMain.on("create-popup-window", (event, options) => {
+  // dialog.showMessageBox({
+  //   type: "info",
+  //   title: "提示",
+  //   message: message,
+  //   buttons: ["确定"],
+  // });
+  const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+  const { windowWidth, windowHeight } = options;
+  const { position } = options;
+
+  const popupWindow = new BrowserWindow({
+    x: width - windowWidth, // 设置窗口的 x 坐标使其出现在屏幕的右侧
+    y: height - windowHeight, // 设置窗口的 y 坐标使其出现在屏幕的底部
+    width: windowWidth,
+    height: windowHeight,
+    frame: false,
+    transparent: true,
+    alwaysOnTop: true,
+    nodeIntegration: true,
+    backgroundColor:"#ffffff"
+    // 其他选项...
+  });
+  // 设置弹窗始终显示在最上层
+  popupWindow.setAlwaysOnTop(true);
+  // 设置弹窗位置
+  // popupWindow.setPosition(position.x, position.y);
+
+  // 加载并显示弹窗内容
+  popupWindow.loadURL(
+    "file://" +
+      `C:/Users/Administrator/Desktop/changeStr/fileManage/src/popup.html`
+  );
+  popupWindow.show();
+});
